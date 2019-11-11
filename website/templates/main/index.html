@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Website - Page Not Found{% endblock %}
+
+{% block content %}
+    <div>
+        <h1>Permissions</h1>
+        <form class="bs-example bs-example-form search-form" role="form" method="POST">
+            <div class="input-group input-group-lg">
+                {{ input_form.hidden_tag() }}
+                {{ input_form.input(class='form-control',placeholder='Search...') }}
+                <span class="input-group-btn">
+                    {{ input_form.submit(class='btn btn-success btn-base', style="") }}
+                </span>
+            </div>
+        </form>
+        <div>
+            {% for permission in permissions %}
+                <span>{{ permission }}</span>
+                <form action="/permissions/{{ permissions.index(permission)}}" enctype="multipart/form-data" method="GET">
+                    <button class="btn btn-info btn-base">删除</button>
+                </form>
+                </br>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
